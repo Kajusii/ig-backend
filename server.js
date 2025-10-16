@@ -8,6 +8,7 @@ import cors from "cors";
 import userRouter from "./router/user/user.route.js";
 import postRouter from "./router/post/post.route.js";
 import dotenv from "dotenv";
+import { commentRouter } from "./router/comment/comment.route.js";
 dotenv.config();
 const app = express();
 app.use(express.json());
@@ -27,7 +28,7 @@ app.get("/gg", async (req, res) => {
   const user = await postModel.find().populate("user");
   res.status(200).json(user);
 });
-
+app.use("/comment", commentRouter);
 app.listen(port, () => {
   console.log("server is running");
 });

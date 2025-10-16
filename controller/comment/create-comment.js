@@ -1,5 +1,4 @@
 import { commentModel } from "../../Schema/comment.schema.js";
-import { postModel } from "../../Schema/post.schema.js";
 
 export const createComment = async (req, res) => {
   const body = req.body;
@@ -7,16 +6,9 @@ export const createComment = async (req, res) => {
   const postId = params.postId;
   const user = req.user;
   const comments = await commentModel.create({
+    post: postId,
     comment: body.comment,
     user: user._id,
   });
-
-  const post = await postModel.findById({ postId });
-  console.log(post);
-  const postcomment = await postModel
-    .findByIdAndUpdate(postId, {
-      comment: comments,
-    })
-    .populate("comment");
-  res.json(postcomment);
+  res.status(200).json(comments);
 };
