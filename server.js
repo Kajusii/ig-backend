@@ -12,7 +12,9 @@ import { commentRouter } from "./router/comment/comment.route.js";
 dotenv.config();
 const app = express();
 app.use(express.json());
-app.use(cors());
+const cors = require('cors');
+app.use(cors({ origin: 'https://instagram-eta-weld.vercel.app/login' }));
+
 const port = 5555;
 
 const connectToDb = async () => {
