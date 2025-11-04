@@ -13,7 +13,7 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-app.use(cors({ origin: 'https://instagram-eta-weld.vercel.app' }));
+app.use(cors());
 
 const port = 5555;
 
